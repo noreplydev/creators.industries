@@ -19,7 +19,7 @@
 </script>
 
 <main
-  class="bg-black text-white selection:bg-white selection:text-black min-h-screen w-full overflow-x-hidden"
+  class="min-h-screen w-full overflow-x-hidden transition-colors duration-500"
 >
   <!-- Hero Section -->
   <section class="min-h-screen w-full relative overflow-hidden flex flex-col">
@@ -38,24 +38,28 @@
       </h1>
       <p
         class="dm-mono font-light uppercase mt-4 tracking-widest transition-all duration-1000 delay-500 {showContent
-          ? 'opacity-70 translate-y-0'
+          ? 'translate-y-0'
           : 'opacity-0 translate-y-4'} text-md md:text-lg max-w-[90vw] md:max-w-3xl text-center leading-relaxed"
       >
         {#each i18n.t("hero.subtitle").split(" ") as word, i}
+          {@const isSpecial =
+            word.toUpperCase().includes("REVENUE") ||
+            word.toUpperCase().includes("MÉTRICAS")}
           <span
-            class="relative inline-block {highlightActive &&
-            (word.includes('REVENUE') || word.includes('MÉTRICAS'))
-              ? 'text-white'
-              : ''}"
+            class="relative inline-block transition-opacity duration-500 {showContent
+              ? highlightActive && isSpecial
+                ? 'opacity-100'
+                : 'opacity-70'
+              : 'opacity-0'}"
           >
             {word}
-            {#if word.includes("REVENUE") || word.includes("MÉTRICAS")}
-              <div
-                class="absolute -bottom-2 -left-3 h-[1px] bg-white transition-all duration-500 ease-in"
+            {#if isSpecial}
+              <span
+                class="absolute -bottom-2 -left-3 h-[1px] bg-brand-fg transition-[width,opacity] duration-500 ease-in block"
                 style="width: {highlightActive
                   ? '120%'
                   : '0%'}; opacity: {highlightActive ? '0.6' : '0'}"
-              ></div>
+              ></span>
             {/if}
             {i < i18n.t("hero.subtitle").split(" ").length - 1 ? "\u00A0" : ""}
           </span>
@@ -76,10 +80,12 @@
   </section>
 
   <!-- Areas Section -->
-  <section class="py-20 md:py-32 px-6 md:px-24 border-t border-white/5">
+  <section
+    class="py-20 md:py-32 px-6 md:px-24 border-t border-brand-fg/5 transition-colors duration-500"
+  >
     <h2
       class="syne text-[10px] md:text-sm font-bold tracking-[0.3em] mb-10 md:mb-16 pl-5 uppercase
-        bg-white text-black"
+        bg-brand-fg text-brand-bg transition-colors duration-500"
     >
       {i18n.t("section.services.title")}
     </h2>
@@ -87,7 +93,7 @@
     <div class="flex flex-col gap-4 md:gap-8">
       {#each ["01", "02", "03"] as id}
         <div
-          class="group border-b border-white/10 pb-5 md:pb-8 flex flex-col md:flex-row md:items-end justify-between hover:border-white transition-colors duration-500"
+          class="group border-b border-brand-fg/10 pb-5 md:pb-8 flex flex-col md:flex-row md:items-end justify-between hover:border-brand-fg transition-colors duration-500"
         >
           <h3
             class="syne text-3xl sm:text-4xl md:text-7xl font-bold tracking-tighter uppercase leading-none"
@@ -105,10 +111,12 @@
   </section>
 
   <!-- Process Section -->
-  <section class="pt-20 pb-40 md:pt-32 md:pb-60 px-6 md:px-24 bg-stone-950/50">
+  <section
+    class="pt-20 pb-40 md:pt-32 md:pb-60 px-6 md:px-24 bg-brand-bg transition-colors duration-500"
+  >
     <h2
       class="syne text-[10px] md:text-sm font-bold tracking-[0.3em] mb-10 md:mb-16 pl-5 uppercase
-        bg-white text-black"
+        bg-brand-fg text-brand-bg transition-colors duration-500"
     >
       {i18n.t("section.process.title")}
     </h2>
@@ -137,7 +145,7 @@
 
   <!-- Footer Section -->
   <footer
-    class="pt-32 pb-16 md:pt-48 md:pb-24 px-6 md:px-24 bg-white text-black flex flex-col items-center justify-center text-center overflow-hidden"
+    class="pt-32 pb-16 md:pt-48 md:pb-24 px-6 md:px-24 bg-brand-fg text-brand-bg flex flex-col items-center justify-center text-center overflow-hidden transition-colors duration-500"
   >
     <a
       href="mailto:{i18n.t('section.footer.email')}"
@@ -151,11 +159,19 @@
       class="mt-20 md:mt-32 w-full flex flex-col md:flex-row justify-between items-center opacity-60 dm-mono text-[10px] md:text-sm gap-6 md:gap-8"
     >
       <div class="flex gap-6 md:gap-8">
-        <a href="#" class="hover:opacity-100">INSTAGRAM</a>
-        <a href="#" class="hover:opacity-100">TWITTER</a>
-        <a href="#" class="hover:opacity-100">LINKEDIN</a>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          class="hover:opacity-100">INSTAGRAM</a
+        >
+        <a href="https://twitter.com" target="_blank" class="hover:opacity-100"
+          >TWITTER</a
+        >
+        <a href="https://linkedin.com" target="_blank" class="hover:opacity-100"
+          >LINKEDIN</a
+        >
       </div>
-      <p class="order-3 md:order-2">© 2026 THE CREAT0RS</p>
+      <p class="order-3 md:order-2">© 2026 CREATORS</p>
       <p class="order-2 md:order-3">{i18n.t("section.footer.email")}</p>
     </div>
   </footer>
@@ -163,7 +179,6 @@
 
 <style>
   :global(body) {
-    background-color: black;
     margin: 0;
   }
 

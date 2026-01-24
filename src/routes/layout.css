@@ -1,6 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
 @import 'tailwindcss';
 
+@theme {
+  --color-brand-bg: var(--brand-bg);
+  --color-brand-fg: var(--brand-fg);
+  --color-brand-sec-bg: var(--brand-sec-bg);
+  --color-brand-border: var(--brand-border);
+  --color-brand-accent: rgba(255, 255, 255, 0.1);
+  --color-brand-accent-inverse: rgba(0, 0, 0, 0.1);
+}
+
+:root {
+  --brand-bg: #ffffff;
+  --brand-fg: #000000;
+  --brand-sec-bg: rgba(0, 0, 0, 0.03);
+  --brand-border: rgba(0, 0, 0, 0.1);
+  --brand-selection-bg: #000000;
+  --brand-selection-fg: #ffffff;
+}
+
+.dark {
+  --brand-bg: #000000;
+  --brand-fg: #ffffff;
+  --brand-sec-bg: rgba(255, 255, 255, 0.03);
+  --brand-border: rgba(255, 255, 255, 0.1);
+  --brand-selection-bg: #ffffff;
+  --brand-selection-fg: #000000;
+}
+
+body {
+  background-color: var(--brand-bg);
+  color: var(--brand-fg);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+::selection {
+  background-color: var(--brand-selection-bg);
+  color: var(--brand-selection-fg);
+}
+
 
 /* greek */
 @font-face {
