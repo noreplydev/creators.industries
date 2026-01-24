@@ -162,7 +162,7 @@
         <div class="group">
           <span
             class="dm-mono text-[10px] opacity-30 mb-4 block tracking-widest"
-            >{id}</span
+            >/{id}</span
           >
           <h4
             class="syne text-2xl md:text-3xl font-bold mb-4 md:mb-6 tracking-tight leading-none group-hover:italic transition-all duration-300"
