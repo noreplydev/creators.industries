@@ -117,10 +117,10 @@
     class="py-20 md:py-32 px-6 md:px-24 border-t border-brand-fg/5 transition-colors duration-500"
   >
     <h2
-      class="syne text-[10px] md:text-sm font-bold tracking-[0.3em] mb-10 md:mb-16 pl-5 uppercase
+      class="syne text-[10px] md:text-sm font-bold tracking-[0.3em] mb-10 md:mb-16 pl-3 py-2 uppercase
         bg-brand-fg text-brand-bg transition-colors duration-500"
     >
-      {i18n.t("section.services.title")}
+      [{i18n.t("section.services.title")}]
     </h2>
 
     <div class="flex flex-col gap-4 md:gap-8">
@@ -129,7 +129,7 @@
           class="group border-b border-brand-fg/10 pb-5 md:pb-8 flex flex-col md:flex-row md:items-end justify-between hover:border-brand-fg transition-colors duration-500"
         >
           <h3
-            class="syne text-3xl sm:text-4xl md:text-7xl font-bold tracking-tighter uppercase leading-none"
+            class="syne text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter uppercase leading-none"
           >
             {i18n.t(`section.services.${id}`)}
           </h3>
@@ -148,10 +148,10 @@
     class="pt-20 pb-40 md:pt-32 md:pb-60 px-6 md:px-24 bg-brand-bg transition-colors duration-500"
   >
     <h2
-      class="syne text-[10px] md:text-sm font-bold tracking-[0.3em] mb-10 md:mb-16 pl-5 uppercase
+      class="syne text-[10px] md:text-sm font-bold tracking-[0.3em] mb-10 md:mb-16 pl-3 py-2 uppercase
         bg-brand-fg text-brand-bg transition-colors duration-500"
     >
-      {i18n.t("section.process.title")}
+      [{i18n.t("section.process.title")}]
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
