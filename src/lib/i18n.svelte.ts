@@ -7,7 +7,7 @@ const translations: Translations = {
         'nav.english': 'english',
         'nav.spanish': 'spanish',
         'hero.title': 'CREATORS',
-        'hero.subtitle': "WE BUILD SOFTWARE THAT IMPROVES YOUR KPI'S",
+        'hero.subtitle': "WE BUILD SOFTWARE THAT IMPROVES YOUR KPIs",
         'hero.description': 'CREAT0RS, EXPERTS IN SYSTEMS ARCHITECTURE, AI INTEGRATION AND PROTOTYPING.',
         'section.services.title': 'AREAS',
         'section.services.01': 'SOFTWARE DEVELOPMENT',
@@ -22,13 +22,13 @@ const translations: Translations = {
         'section.process.03.desc': "WE BUILD THE SOFTWARE THAT MATTERS TO YOUR COMPANY.",
         'section.footer.cta.1': 'START A',
         'section.footer.cta.2': 'PROJECT',
-        'section.footer.email': 'syn@thecreat0rs.org'
+        'section.footer.email': 'syn@creators.industries'
     },
     es: {
         'nav.english': 'inglés',
         'nav.spanish': 'español',
         'hero.title': 'CREATORS',
-        'hero.subtitle': "CONSTRUIMOS SOFTWARE QUE MEJORA TUS KPI'S",
+        'hero.subtitle': "CONSTRUIMOS SOFTWARE QUE MEJORA TUS KPIs",
         'hero.description': 'CREAT0RS, EXPERTOS EN ARQUITECTURA DE SISTEMAS, INTEGRACIÓN DE IA Y PROTOTIPADO.',
         'section.services.title': 'ÁREAS',
         'section.services.01': 'DESARROLLO DE SOFTWARE',
@@ -43,7 +43,7 @@ const translations: Translations = {
         'section.process.03.desc': "CONSTRUIMOS EL SOFTWARE QUE LE IMPORTA A TU EMPRESA.",
         'section.footer.cta.1': 'EMPIEZA UN',
         'section.footer.cta.2': 'PROYECTO',
-        'section.footer.email': 'syn@thecreat0rs.org'
+        'section.footer.email': 'syn@creators.industries'
     }
 };
 

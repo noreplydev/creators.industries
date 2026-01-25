@@ -94,7 +94,7 @@
         text-[10px] max-w-[80vw] text-center leading-loose pointer-events-auto"
       >
         {#each i18n.t("hero.subtitle").split(" ") as word, i}
-          {@const isSpecial = word.toUpperCase().includes("KPI'S")}
+          {@const isSpecial = word.toUpperCase().includes("KPIS")}
           <span
             class="relative inline-block transition-opacity duration-500 {showContent
               ? highlightActive && isSpecial
@@ -124,7 +124,7 @@
         text-base max-w-3xl text-center leading-loose pointer-events-auto"
       >
         {#each i18n.t("hero.subtitle").split(" ") as word, i}
-          {@const isSpecial = word.toUpperCase().includes("KPI'S")}
+          {@const isSpecial = word.toUpperCase().includes("KPIS")}
           <span
             class="relative inline-block transition-opacity duration-500 {showContent
               ? highlightActive && isSpecial
@@ -246,7 +246,9 @@
         >
       </div>
       <p class="order-3 md:order-2">© 2026 CREATORS</p>
-      <p class="order-2 md:order-3">{i18n.t("section.footer.email")}</p>
+      <p class="order-2 md:order-3">
+        {i18n.t("section.footer.email").toUpperCase()}
+      </p>
     </div>
   </footer>
 </main>
