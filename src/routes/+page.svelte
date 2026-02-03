@@ -17,11 +17,11 @@
     { src: v7, width: "auto", mx: "-2px" }, // C
     { src: v6, width: "auto", mx: "-2px" }, // R
     { src: v5, width: "auto", mx: "-2px" }, // E
-    { src: v4, width: "auto", mx: "-2px" }, // A
+    { src: v4, width: "auto", mx: "-10px" }, // A
     { src: v3, width: "auto", mx: "-20px" }, // T
     { src: v2, width: "auto", mx: "-2px" }, // R
     { src: v1, width: "auto", mx: "-2px" }, // O
-    { src: v0, width: "auto", mx: "-2px" }, // S
+    { src: v0, width: "auto", mx: "-10px" }, // S
   ];
   let activeLetters = $state(new Array(letterItems.length).fill(false));
 
@@ -34,7 +34,7 @@
   onMount(() => {
     setTimeout(() => {
       showContent = true;
-    }, 2000);
+    }, 1700);
 
     setTimeout(() => {
       showOutline = true;
@@ -45,10 +45,10 @@
           () => {
             activeLetters[index] = true;
           },
-          1200 + i * 150,
+          500 + i * 100,
         );
       });
-    }, 500);
+    }, 300);
 
     setTimeout(() => {
       highlightActive = true;
@@ -87,63 +87,15 @@
 
       <!-- Subtitle Layer (Underneath Title vertically) -->
       <!-- Mobile Subtitle -->
-      <p
-        class="md:hidden absolute bottom-16 left-1/2 transform -translate-x-1/2
-        dm-mono font-light uppercase tracking-[0.3em] transition-all duration-1000 delay-500
-        {showContent ? 'opacity-100' : 'opacity-0'} 
-        text-[10px] max-w-[80vw] text-center leading-loose pointer-events-auto"
-      >
-        {#each i18n.t("hero.subtitle").split(" ") as word, i}
-          {@const isSpecial = word.toUpperCase().includes("KPIS")}
-          <span
-            class="relative inline-block transition-opacity duration-500 {showContent
-              ? highlightActive && isSpecial
-                ? 'opacity-100'
-                : 'opacity-60'
-              : 'opacity-0'}"
-          >
-            {word}
-            {#if isSpecial}
-              <span
-                class="absolute -bottom-1 -left-1 h-[1px] bg-brand-fg transition-[width,opacity] duration-500 ease-in block"
-                style="width: {highlightActive
-                  ? '110%'
-                  : '0%'}; opacity: {highlightActive ? '0.6' : '0'}"
-              ></span>
-            {/if}
-            {i < i18n.t("hero.subtitle").split(" ").length - 1 ? "\u00A0" : ""}
-          </span>
-        {/each}
-      </p>
 
       <!-- Desktop Subtitle -->
       <p
-        class="hidden md:block absolute bottom-40 left-1/2 transform -translate-x-1/2
-        dm-mono font-light uppercase tracking-[0.3em] transition-all duration-1000 delay-500
-        {showContent ? 'opacity-100' : 'opacity-0'} 
+        class="md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 translate-y-[calc(3rem+0.75rem)]
+        dm-mono font-light uppercase tracking-[0.3em]
+        {showContent ? 'letter-active' : 'opacity-0'} 
         text-base max-w-3xl text-center leading-loose pointer-events-auto"
       >
-        {#each i18n.t("hero.subtitle").split(" ") as word, i}
-          {@const isSpecial = word.toUpperCase().includes("KPIS")}
-          <span
-            class="relative inline-block transition-opacity duration-500 {showContent
-              ? highlightActive && isSpecial
-                ? 'opacity-100'
-                : 'opacity-60'
-              : 'opacity-0'}"
-          >
-            {word}
-            {#if isSpecial}
-              <span
-                class="absolute -bottom-1 -left-1 h-[1px] bg-brand-fg transition-[width,opacity] duration-500 ease-in block"
-                style="width: {highlightActive
-                  ? '110%'
-                  : '0%'}; opacity: {highlightActive ? '0.6' : '0'}"
-              ></span>
-            {/if}
-            {i < i18n.t("hero.subtitle").split(" ").length - 1 ? "\u00A0" : ""}
-          </span>
-        {/each}
+        [{i18n.t("hero.subtitle")}]
       </p>
     </div>
   </section>
@@ -219,36 +171,30 @@
   <footer
     class="pt-32 pb-16 md:pt-48 md:pb-24 px-6 md:px-24 bg-brand-fg text-brand-bg flex flex-col items-center justify-center text-center overflow-hidden transition-colors duration-500"
   >
-    <a
-      href="mailto:{i18n.t('section.footer.email')}"
-      class="syne text-5xl md:text-[10vw] font-bold tracking-tighter hover:italic transition-all duration-500 leading-none flex flex-col items-center"
+    <p
+      class="syne text-7xl md:text-[17vw] font-bold -tracking-[3vw] opacity-10 hover:italic transition-all duration-500 leading-none flex flex-col items-center"
     >
-      <span>{i18n.t("section.footer.cta.1")}</span>
-      <span>{i18n.t("section.footer.cta.2")}</span>
-    </a>
+      CREATORS
+    </p>
 
     <div
-      class="mt-20 md:mt-32 w-full flex flex-col md:flex-row justify-between items-center opacity-60 dm-mono text-[10px] md:text-sm gap-6 md:gap-8"
+      class="mt-20 md:mt-32 w-full flex flex-col md:flex-row justify-start items-center opacity-60 dm-mono text-[10px] md:text-sm gap-6 md:gap-8"
     >
-      <div class="flex gap-6 md:gap-8">
-        <!-- <a
-          href="https://instagram.com"
-          target="_blank"
-          class="hover:opacity-100">INSTAGRAM</a
-        >
-        <a href="https://twitter.com" target="_blank" class="hover:opacity-100"
-          >TWITTER</a
-        > -->
+      <div class="flex flex-1 gap-6 md:gap-8">
         <a
           href="https://www.linkedin.com/company/creat0rs"
           target="_blank"
           class="hover:opacity-100">LINKEDIN</a
         >
       </div>
-      <p class="order-3 md:order-2">© 2026 CREATORS</p>
-      <p class="order-2 md:order-3">
-        {i18n.t("section.footer.email").toUpperCase()}
-      </p>
+      <div class="flex flex-1 justify-center">
+        <p class="order-3 md:order-2">© 2026 CREATORS</p>
+      </div>
+      <div class="flex flex-1 justify-end">
+        <p class="order-2 md:order-3">
+          {i18n.t("section.footer.email").toUpperCase()}
+        </p>
+      </div>
     </div>
   </footer>
 </main>

@@ -7,7 +7,7 @@ const translations: Translations = {
         'nav.english': 'english',
         'nav.spanish': 'spanish',
         'hero.title': 'CREATORS',
-        'hero.subtitle': "WE BUILD SOFTWARE THAT IMPROVES YOUR KPIs",
+        'hero.subtitle': "BUILDING AUTONOMOUS SYSTEMS",
         'hero.description': 'CREAT0RS, EXPERTS IN SYSTEMS ARCHITECTURE, AI INTEGRATION AND PROTOTYPING.',
         'section.services.title': 'AREAS',
         'section.services.01': 'SOFTWARE DEVELOPMENT',
@@ -20,15 +20,13 @@ const translations: Translations = {
         'section.process.02.desc': "WE DEFINE SCOPE AND BUDGET. CLOSING THE DEAL.",
         'section.process.03.title': 'EXECUTION',
         'section.process.03.desc': "WE BUILD THE SOFTWARE THAT MATTERS TO YOUR COMPANY.",
-        'section.footer.cta.1': 'START A',
-        'section.footer.cta.2': 'PROJECT',
         'section.footer.email': 'syn@creators.industries'
     },
     es: {
         'nav.english': 'inglés',
         'nav.spanish': 'español',
         'hero.title': 'CREATORS',
-        'hero.subtitle': "CONSTRUIMOS SOFTWARE QUE MEJORA TUS KPIs",
+        'hero.subtitle': "CONSTRUYENDO SISTEMAS AUTONOMOS",
         'hero.description': 'CREAT0RS, EXPERTOS EN ARQUITECTURA DE SISTEMAS, INTEGRACIÓN DE IA Y PROTOTIPADO.',
         'section.services.title': 'ÁREAS',
         'section.services.01': 'DESARROLLO DE SOFTWARE',
@@ -41,8 +39,6 @@ const translations: Translations = {
         'section.process.02.desc': "DEFINIMOS ALCANCE Y PRESUPUESTO. CERRAMOS EL ACUERDO.",
         'section.process.03.title': 'EJECUCIÓN',
         'section.process.03.desc': "CONSTRUIMOS EL SOFTWARE QUE LE IMPORTA A TU EMPRESA.",
-        'section.footer.cta.1': 'EMPIEZA UN',
-        'section.footer.cta.2': 'PROYECTO',
         'section.footer.email': 'syn@creators.industries'
     }
 };
