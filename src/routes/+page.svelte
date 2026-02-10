@@ -117,26 +117,70 @@
     </div>
   </section>
 
-  <!-- Areas Section (Enforced Dark Mode) -->
+  <!-- Product/Tactical Video Section -->
   <section
-    class="flex flex-col gap-5 w-screen h-screen
-      justify-center items-center py-20 md:py-32 px-6 md:px-24 bg-black"
+    class="w-screen py-20 md:py-32 px-6 md:px-24 bg-black flex flex-col items-center overflow-hidden"
   >
-    <h2
-      class="dm-mono font-light uppercase
-       text-white text-center"
-    >
-      [{i18n.t("section.services.title")}]
-    </h2>
-    <p class="text-white dm-mono uppercase text-center">
-      We develop autonomous systems designed for the edge, leveraging
-      high-mobility platforms and multimodal architectures. Our software stack
-      enables real-time understanding in open environments. We create systems
-      capable of operating with total autonomy and resilience.
-    </p>
-  </section>
+    <div class="w-full max-w-6xl">
+      <div class="flex flex-col items-center gap-16">
+        <!-- Mission Content (Above Video) -->
+        <div class="flex flex-col items-center text-center gap-6 max-w-4xl">
+          <div class="flex flex-col gap-3 items-center">
+            <h2 class="dm-mono text-sm font-light text-white/40 uppercase">
+              [{i18n.t("section.services.title")}]
+            </h2>
+          </div>
 
-  <!-- Footer Section -->
+          <p class="dm-mono font-light uppercase text-sm text-white/80">
+            {i18n.t("section.mission.text")}
+          </p>
+        </div>
+
+        <!-- Video Container -->
+        <div class="relative w-full max-w-4xl group">
+          <!-- Tactical Frame corners -->
+          <div
+            class="absolute -top-4 -left-4 w-8 h-8 border-t border-l border-white/20"
+          ></div>
+          <div
+            class="absolute -top-4 -right-4 w-8 h-8 border-t border-r border-white/20"
+          ></div>
+          <div
+            class="absolute -bottom-4 -left-4 w-8 h-8 border-b border-l border-white/20"
+          ></div>
+          <div
+            class="absolute -bottom-4 -right-4 w-8 h-8 border-b border-r border-white/20"
+          ></div>
+
+          <div
+            class="relative aspect-video overflow-hidden bg-white/5 border-white/10 group-hover:border-white/30 transition-colors duration-500"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+            >
+              <source src="/demo.mp4" type="video/mp4" />
+            </video>
+
+            <!-- Scanline Overlay -->
+            <div
+              class="absolute inset-0 pointer-events-none bg-scanline opacity-20"
+            ></div>
+          </div>
+        </div>
+        <p
+          class="dm-mono text-xs md:text-xs text-center text-white/30 max-w-2xl leading-relaxed uppercase tracking-widest"
+        >
+          Real-time situational awareness powered by AI models. Our systems
+          provide persistent monitoring and autonomous detection in dynamic
+          environments.
+        </p>
+      </div>
+    </div>
+  </section>
   <footer
     class="pt-32 pb-16 md:pt-48 md:pb-24 px-6 md:px-24 bg-brand-fg text-brand-bg flex flex-col items-center justify-center text-center overflow-hidden transition-colors duration-500"
   >
