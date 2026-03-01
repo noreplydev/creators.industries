@@ -1,6 +1,6 @@
 <script>
-  import { onMount } from "svelte";
-  import { fly, fade } from "svelte/transition";
+  import { onMount, tick } from "svelte";
+  import { fade } from "svelte/transition";
   import Navbar from "../../components/Navbar.svelte";
 
   const countries = [
@@ -47,20 +47,23 @@
   let selectedCountry = $state("");
   let countrySearch = $state("");
   let countryDropdownOpen = $state(false);
-  let countryDropdown = $state(null);
+  let countryDropdown = null;
+  let countrySearchInput = null;
   let leftIntroVisible = $state(false);
   let rightIntroVisible = $state(false);
 
-  function filteredCountries() {
+  const filteredCountries = $derived.by(() => {
     const query = countrySearch.trim().toUpperCase();
     if (!query) return countries;
     return countries.filter((country) => country.includes(query));
-  }
+  });
 
-  function toggleCountryDropdown() {
+  async function toggleCountryDropdown() {
     countryDropdownOpen = !countryDropdownOpen;
     if (countryDropdownOpen) {
       countrySearch = "";
+      await tick();
+      countrySearchInput?.focus();
     }
   }
 
@@ -78,17 +81,17 @@
       rightIntroVisible = true;
     }, 180);
 
-    const onPointerDown = (event) => {
-      if (countryDropdown && !countryDropdown.contains(event.target)) {
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
         countryDropdownOpen = false;
       }
     };
 
-    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
     return () => {
       clearTimeout(leftTimer);
       clearTimeout(rightTimer);
-      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
     };
   });
 </script>
@@ -129,7 +132,11 @@
 
         <div class="xl:col-span-6 xl:self-center">
           <form class="grid grid-cols-1 gap-4 xl:gap-3.5 right-stagger" class:is-visible={rightIntroVisible} action="#" method="post">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 xl:gap-3.5 right-item" style="--delay: 0ms;">
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 gap-4 xl:gap-3.5 right-item relative"
+              class:z-[130]={countryDropdownOpen}
+              style="--delay: 0ms;"
+            >
               <label class="flex flex-col gap-2">
                 <span class="dm-mono text-[10px] uppercase tracking-widest text-white">FULL NAME</span>
                 <input
@@ -141,46 +148,50 @@
                 />
               </label>
 
-              <label class="flex flex-col gap-2">
+              <div class="flex flex-col gap-2">
                 <span class="dm-mono text-[10px] uppercase tracking-widest text-white">COUNTRY</span>
                 <div class="relative" bind:this={countryDropdown}>
                   <input type="hidden" name="country" value={selectedCountry} />
-                <button
-                  type="button"
-                  aria-haspopup="listbox"
-                  aria-expanded={countryDropdownOpen}
-                  class="dm-mono text-sm uppercase bg-white/[0.03] border border-white/20 hover:border-white/35 focus:border-white/70 outline-none pl-4 pr-11 py-3 w-full text-left cursor-pointer transition-colors duration-150 {selectedCountry ? 'text-white' : 'text-white/45'}"
-                  on:click={toggleCountryDropdown}
-                >
-                  {selectedCountry || "SELECT COUNTRY"}
-                </button>
-                  <span class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-white/60 text-xs transition-transform duration-200 {countryDropdownOpen ? 'rotate-180' : ''}">&#9662;</span>
+                  <button
+                    type="button"
+                    aria-haspopup="listbox"
+                    aria-expanded={countryDropdownOpen}
+                    class="dm-mono text-sm uppercase bg-black border border-white/20 hover:border-white/35 focus:border-white/70 outline-none pl-4 pr-11 py-3 w-full text-left cursor-pointer transition-colors duration-150 {selectedCountry ? 'text-white' : 'text-white/45'}"
+                    on:click={toggleCountryDropdown}
+                  >
+                    {selectedCountry || "SELECT COUNTRY"}
+                  </button>
+                  <span class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-white/60 text-xs transition-transform duration-200 {countryDropdownOpen ? 'rotate-180' : ''}">
+                    &#9662;
+                  </span>
 
                   {#if countryDropdownOpen}
                     <div
-                      class="absolute z-30 mt-1 w-full border border-white/20 bg-zinc-900/95 backdrop-blur-sm"
-                      in:fly={{ y: -6, duration: 140 }}
+                      class="absolute top-full left-0 right-0 mt-2 z-[140] border border-white/20 bg-black opacity-100 shadow-[0_18px_40px_rgba(0,0,0,0.8)] pointer-events-auto"
+                      on:pointerdown|stopPropagation
+                      in:fade={{ duration: 120 }}
                       out:fade={{ duration: 100 }}
                     >
                       <div class="p-2 border-b border-white/15">
                         <input
                           type="text"
                           bind:value={countrySearch}
-                          class="dm-mono text-xs bg-white/[0.04] border border-white/20 focus:border-white/70 outline-none text-white px-3 py-2 w-full"
+                          bind:this={countrySearchInput}
+                          class="dm-mono text-xs uppercase bg-black border border-white/20 focus:border-white/70 outline-none text-white px-3 py-2 w-full"
                           placeholder="SEARCH COUNTRY..."
                         />
                       </div>
 
-                      <ul role="listbox" class="max-h-44 overflow-y-auto no-scrollbar">
-                        {#if filteredCountries().length === 0}
+                      <ul role="listbox" class="max-h-52 overflow-y-auto no-scrollbar">
+                        {#if filteredCountries.length === 0}
                           <li class="dm-mono text-xs uppercase text-white/45 px-4 py-3">NO COUNTRY FOUND</li>
                         {:else}
-                          {#each filteredCountries() as country}
+                          {#each filteredCountries as country}
                             <li>
                               <button
                                 type="button"
-                                class="dm-mono w-full text-left text-sm uppercase px-4 py-3 transition-colors duration-150 {selectedCountry === country ? 'bg-white text-black' : 'text-white hover:bg-white/8'}"
-                                on:click={() => selectCountry(country)}
+                                class="dm-mono w-full text-left text-sm uppercase px-4 py-3 transition-colors duration-150 {selectedCountry === country ? 'bg-white text-black' : 'text-white hover:bg-white/10'}"
+                                on:pointerdown|preventDefault={() => selectCountry(country)}
                               >
                                 {country}
                               </button>
@@ -191,7 +202,7 @@
                     </div>
                   {/if}
                 </div>
-              </label>
+              </div>
             </div>
 
             <label class="flex flex-col gap-2 right-item" style="--delay: 90ms;">
@@ -274,4 +285,5 @@
     width: 0;
     height: 0;
   }
+
 </style>
