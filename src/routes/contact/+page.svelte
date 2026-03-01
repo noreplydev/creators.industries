@@ -117,7 +117,7 @@
               IN TOUCH.
             </h1>
             <p class="dm-mono mt-5 text-xs md:text-sm uppercase tracking-wide leading-relaxed text-white/65">
-              TELL US WHAT YOU ARE BUILDING. ONCE BACKEND IS CONNECTED, THIS FORM WILL SEND DIRECTLY TO OUR INBOX PIPELINE.
+              TELL US WHAT YOU ARE BUILDING.
             </p>
 
             <div class="mt-10 xl:mt-auto border-t border-white/15 pt-4">
