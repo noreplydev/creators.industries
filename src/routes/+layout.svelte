@@ -14,5 +14,8 @@
   });
 </script>
 
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+<svelte:head>
+  <title>CREATORS</title>
+  <link rel="icon" href={favicon} />
+</svelte:head>
 {@render children()}
