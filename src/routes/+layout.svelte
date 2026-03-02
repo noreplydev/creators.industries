@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import "./layout.css";
-  import favicon from "$lib/assets/favicon.svg";
+  import favicon from "$lib/assets/favicon.png";
   import { setI18n } from "$lib/i18n.svelte";
   import { setTheme } from "$lib/theme.svelte";
 
